@@ -1,13 +1,10 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-
-
-
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
         double ans; // To hold the final calculateTrigonometry.
+        System.out.println("\n-----Welcome to my advance calculator-----\n");
         int count = 0;
         Calculation cal = new Calculation();
 
@@ -21,10 +18,18 @@ public class Main {
             }
 
             if (userInput==2){
-                ans = cal.calculateTrigonometry();
-                System.out.println("Ans: "+ans);
+                float ans1 = (float) cal.calculateTrigonometry();
+                if (ans1 !=-1){
+                    System.out.println("Ans: "+ ans1);
+                }
             }
 
+            if (userInput==3){
+                ans = cal.logarithmicCalculation();
+                if (ans!=-1){
+                    System.out.println("Ans: "+ans);
+                }
+            }
 
             // To Ask the user for further calculations.
             System.out.println("want to calculate more? (Y/N)");
@@ -43,7 +48,6 @@ public class Main {
             }
         }
 
-
         // To display the calculation  history
         System.out.println("Do you want to show calculation history?. (Y/N)");
         while (true){
@@ -52,10 +56,14 @@ public class Main {
                 if (res=='n'||res=='N'){
                     break;
                 } else if (res=='y' || res =='Y') {
+                    if (cal.getHistory().isEmpty()){
+                        System.out.println(" No, Such history!! ");
+                        break;
+                    }
                     for (String entry : cal.getHistory()){
                         System.out.println(entry);
                     }
-                    continue;
+                    break;
                 }else {
                     System.out.println("Invalid input plz try again!");
                     continue;
@@ -68,5 +76,4 @@ public class Main {
 
         System.out.println("\n--------Thanks for using--------");
     }
-
 }
